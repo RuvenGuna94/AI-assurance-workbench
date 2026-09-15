@@ -1,38 +1,38 @@
-\# Model Record
+# Model Record
 
 
 
-\## Model identity
+## Model identity
 
 
 
-\- Full Ollama tag: `llama3.2:3b-instruct-q4\_K\_M`
+- Full Ollama tag: `llama3.2:3b-instruct-q4_K_M`
 
-\- Publisher: Meta
+- Publisher: Meta
 
-\- Model family: Llama 3.2
+- Model family: Llama 3.2
 
-\- Architecture: `llama`
+- Architecture: `llama`
 
-\- Model type: Instruction-tuned text model
+- Model type: Instruction-tuned text model
 
-\- Parameter count: 3.2 billion
+- Parameter count: 3.2 billion
 
-\- Quantization: `Q4\_K\_M`
+- Quantization: `Q4_K_M`
 
-\- Advertised maximum context length: 131,072 tokens
+- Advertised maximum context length: 131,072 tokens
 
-\- Embedding length: 3,072
+- Embedding length: 3,072
 
-\- Capabilities: Completion and tools
+- Capabilities: Completion and tools
 
-\- Downloaded artifact size: 2.0 GB
+- Downloaded artifact size: 2.0 GB
 
-\- Exact download date: 15.09.2026
+- Exact download date: 15.09.2026
 
 
 
-\## Runtime configuration
+## Runtime configuration
 
 
 
@@ -44,17 +44,17 @@ Output from `ollama ps`:
 
 NAME                         ID            SIZE    PROCESSOR  CONTEXT
 
-llama3.2:3b-instruct-q4\_K\_M    a80c4f17acd5  2.6 GB  100% GPU   4096
+llama3.2:3b-instruct-q4_K_M    a80c4f17acd5  2.6 GB  100% GPU   4096
 
 ```
 
 
 
-\- Model allocation: 100% GPU
+- Model allocation: 100% GPU
 
-\- Active runtime context: 4,096 tokens
+- Active runtime context: 4,096 tokens
 
-\- Reported loaded size: 2.6 GB
+- Reported loaded size: 2.6 GB
 
 
 
@@ -70,19 +70,19 @@ Evaluation reports must record the actual runtime context used.
 
 
 
-\## Runtime and hardware
+## Runtime and hardware
 
 
 
-\- Operating system: Windows
+- Operating system: Windows
 
-\- Ollama version: 0.34.0
+- Ollama version: 0.34.0
 
-\- GPU: NVIDIA GeForce RTX 3070 Laptop GPU
+- GPU: NVIDIA GeForce RTX 3070 Laptop GPU
 
-\- GPU memory: 8,192 MiB
+- GPU memory: 8,192 MiB
 
-\- NVIDIA driver: 616.92
+- NVIDIA driver: 616.92
 
 
 
@@ -90,29 +90,29 @@ These values describe the environment observed during model setup.
 
 
 
-\## Model page and license
+## Model page and license
 
 
 
-\- Model page: https://ollama.com/library/llama3.2
+- Model page: https://ollama.com/library/llama3.2
 
-\- Exact model page: https://ollama.com/library/llama3.2:3b-instruct-q4\_K\_M
+- Exact model page: https://ollama.com/library/llama3.2:3b-instruct-q4_K_M
 
-\- License: Llama 3.2 Community License Agreement
+- License: Llama 3.2 Community License Agreement
 
-\- Model release date shown in license: September 25, 2024
+- Model release date shown in license: September 25, 2024
 
 
 
-\## Retrieval and verification commands
+## Retrieval and verification commands
 
 
 
 ```powershell
 
-ollama pull llama3.2:3b-instruct-q4\_K\_M
+ollama pull llama3.2:3b-instruct-q4_K_M
 
-ollama show llama3.2:3b-instruct-q4\_K\_M
+ollama show llama3.2:3b-instruct-q4_K_M
 
 ollama list
 
@@ -128,7 +128,7 @@ After loading the model, verify allocation and context:
 
 ```powershell
 
-ollama run llama3.2:3b-instruct-q4\_K\_M
+ollama run llama3.2:3b-instruct-q4_K_M
 
 ollama ps
 
@@ -142,7 +142,7 @@ Record GPU information:
 
 ```powershell
 
-nvidia-smi --query-gpu=name,memory.total,driver\_version --format=csv
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv
 
 ```
 
@@ -154,7 +154,7 @@ observed artifact and helps detect changes between evaluation runs.
 
 
 
-\## Selection rationale
+## Selection rationale
 
 
 
@@ -182,31 +182,31 @@ headroom rather than maximum model capability.
 
 
 
-\## Known limitations
+## Known limitations
 
 
 
-\- The model may hallucinate facts or fabricate completed support actions.
+- The model may hallucinate facts or fabricate completed support actions.
 
-\- Instruction tuning does not guarantee resistance to prompt injection.
+- Instruction tuning does not guarantee resistance to prompt injection.
 
-\- Quantization can affect output quality compared with higher precision.
+- Quantization can affect output quality compared with higher precision.
 
-\- Small models may struggle with complex instructions.
+- Small models may struggle with complex instructions.
 
-\- The active 4,096-token context limits the available conversation space.
+- The active 4,096-token context limits the available conversation space.
 
-\- Temperature zero does not guarantee identical results across runtime
+- Temperature zero does not guarantee identical results across runtime
 
-&#x20; versions, hardware, and settings.
+  versions, hardware, and settings.
 
-\- Garak detector signals require investigation and are not automatically
+- Garak detector signals require investigation and are not automatically
 
-&#x20; confirmed vulnerabilities.
+  confirmed vulnerabilities.
 
-\- Results apply only to the recorded application, system prompt, model,
+- Results apply only to the recorded application, system prompt, model,
 
-&#x20; runtime, and evaluation configuration.
+  runtime, and evaluation configuration.
 
-\- Model binaries are not included in this repository.
+- Model binaries are not included in this repository.
 
