@@ -37,3 +37,10 @@ Ollama
         v
 Llama 3.2 3B Instruct
 ```
+
+## Model
+
+This project uses `llama3.2:3b-instruct-q4_K_M` through Ollama.
+
+See [the model record](docs/model-record.md) for hardware, configuration,
+provenance, and known limitations.
