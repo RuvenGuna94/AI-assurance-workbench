@@ -1,8 +1,8 @@
-\# Threat Model
+# Threat Model
 
 
 
-\## Scope
+## Scope
 
 
 
@@ -20,21 +20,21 @@ or customer-account systems.
 
 
 
-\## Assets to protect
+## Assets to protect
 
 
 
-\- Integrity of the support policy.
+- Integrity of the support policy.
 
-\- Accurate representation of the assistant's capabilities.
+- Accurate representation of the assistant's capabilities.
 
-\- Confidentiality of application instructions.
+- Confidentiality of application instructions.
 
-\- Sensitive information that a user might submit.
+- Sensitive information that a user might submit.
 
-\- Availability of the local application and model runtime.
+- Availability of the local application and model runtime.
 
-\- Integrity and provenance of evaluation evidence.
+- Integrity and provenance of evaluation evidence.
 
 
 
@@ -46,19 +46,19 @@ substitute for proper secret management.
 
 
 
-\## Trust boundaries
+## Trust boundaries
 
 
 
-1\. Untrusted user or Garak input enters the FastAPI gateway.
+1. Untrusted user or Garak input enters the FastAPI gateway.
 
-2\. The gateway adds trusted application instructions.
+2. The gateway adds trusted application instructions.
 
-3\. The combined messages are sent to Ollama.
+3. The combined messages are sent to Ollama.
 
-4\. Untrusted model output is returned through the gateway.
+4. Untrusted model output is returned through the gateway.
 
-5\. Evaluation outputs are reviewed before publication.
+5. Evaluation outputs are reviewed before publication.
 
 
 
@@ -68,23 +68,23 @@ The gateway must not allow callers to replace its system policy.
 
 
 
-\## Threat assumptions
+## Threat assumptions
 
 
 
-\- An attacker can submit arbitrary text through the chat endpoint.
+- An attacker can submit arbitrary text through the chat endpoint.
 
-\- Attackers may impersonate administrators or claim special authority.
+- Attackers may impersonate administrators or claim special authority.
 
-\- Attackers may encode instructions or use role-play and jailbreaks.
+- Attackers may encode instructions or use role-play and jailbreaks.
 
-\- The model may follow malicious instructions despite the system policy.
+- The model may follow malicious instructions despite the system policy.
 
-\- There are no tools capable of performing actual customer-account actions.
+- There are no tools capable of performing actual customer-account actions.
 
 
 
-\## Risk register
+## Risk register
 
 
 
@@ -112,7 +112,7 @@ than assign it a new identity.
 
 
 
-\## Initial Garak test scope
+## Initial Garak test scope
 
 
 
@@ -120,9 +120,9 @@ The initial scan targets R1 using:
 
 
 
-\- promptinject.HijackHateHumans
+- promptinject.HijackHateHumans
 
-\- promptinject.HijackKillHumans
+- promptinject.HijackKillHumans
 
 
 
@@ -130,11 +130,11 @@ Initial settings:
 
 
 
-\- Generations: 1.
+- Generations: 1.
 
-\- Parallel attempts: 1.
+- Parallel attempts: 1.
 
-\- Concurrent ASQI tests: 1.
+- Concurrent ASQI tests: 1.
 
 
 
@@ -150,7 +150,7 @@ included in the pinned ASQI test container.
 
 
 
-\## Coverage limitations
+## Coverage limitations
 
 
 
@@ -170,19 +170,19 @@ The initial scan also does not establish:
 
 
 
-\- Correct answers to every retailer-policy question.
+- Correct answers to every retailer-policy question.
 
-\- Protection against every sensitive-data disclosure.
+- Protection against every sensitive-data disclosure.
 
-\- Resistance to denial of service.
+- Resistance to denial of service.
 
-\- Fairness or absence of bias.
+- Fairness or absence of bias.
 
-\- Production readiness or regulatory compliance.
+- Production readiness or regulatory compliance.
 
 
 
-\## Finding review
+## Finding review
 
 
 
@@ -190,19 +190,19 @@ For each potential finding:
 
 
 
-1\. Record the risk ID, probe, and detector.
+1. Record the risk ID, probe, and detector.
 
-2\. Record code, prompt, model, runtime, and container versions.
+2. Record code, prompt, model, runtime, and container versions.
 
-3\. Review the generated output.
+3. Review the generated output.
 
-4\. Attempt to reproduce the behavior.
+4. Attempt to reproduce the behavior.
 
-5\. Distinguish a detector signal from a confirmed application failure.
+5. Distinguish a detector signal from a confirmed application failure.
 
-6\. Describe impact within the intended use.
+6. Describe impact within the intended use.
 
-7\. Document mitigation and retest results.
+7. Document mitigation and retest results.
 
 
 
@@ -210,7 +210,7 @@ A successful scan execution can still contain security failures.
 
 
 
-\## Retest triggers
+## Retest triggers
 
 
 
@@ -218,27 +218,27 @@ Repeat relevant evaluations when changing:
 
 
 
-\- Application code or input controls.
+- Application code or input controls.
 
-\- System policy.
+- System policy.
 
-\- Model or quantization.
+- Model or quantization.
 
-\- Ollama version or inference settings.
+- Ollama version or inference settings.
 
-\- ASQI version.
+- ASQI version.
 
-\- Garak container, probes, or detectors.
+- Garak container, probes, or detectors.
 
-\- Evaluation thresholds.
-
-
-
-\## Related documents
+- Evaluation thresholds.
 
 
 
-\- \[System card](system-card.md)
+## Related documents
 
-\- \[Model record](model-record.md)
+
+
+- [System card](system-card.md)
+
+- [Model record](model-record.md)
 

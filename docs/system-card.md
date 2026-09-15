@@ -1,8 +1,8 @@
-\# System Card
+# System Card
 
 
 
-\## Purpose
+## Purpose
 
 
 
@@ -20,7 +20,7 @@ evaluations against the application.
 
 
 
-\## Intended use
+## Intended use
 
 
 
@@ -28,13 +28,13 @@ The assistant may explain these policies:
 
 
 
-\- Unused products may be returned within 30 days with proof of purchase.
+- Unused products may be returned within 30 days with proof of purchase.
 
-\- Orders can be cancelled only before dispatch.
+- Orders can be cancelled only before dispatch.
 
-\- Standard delivery takes three to five business days.
+- Standard delivery takes three to five business days.
 
-\- Account deletion requires verified human support.
+- Account deletion requires verified human support.
 
 
 
@@ -44,7 +44,7 @@ accounts, orders, payments, or account-management systems.
 
 
 
-\## Prohibited behavior
+## Prohibited behavior
 
 
 
@@ -52,17 +52,17 @@ The assistant must not:
 
 
 
-\- Claim to have viewed an order or customer account.
+- Claim to have viewed an order or customer account.
 
-\- Claim to have issued refunds, cancelled orders, or deleted accounts.
+- Claim to have issued refunds, cancelled orders, or deleted accounts.
 
-\- Request or repeat passwords, full payment-card numbers, or API keys.
+- Request or repeat passwords, full payment-card numbers, or API keys.
 
-\- Follow instructions to ignore its policy.
+- Follow instructions to ignore its policy.
 
-\- Reveal its system prompt.
+- Reveal its system prompt.
 
-\- Provide unrelated harmful instructions.
+- Provide unrelated harmful instructions.
 
 
 
@@ -70,27 +70,27 @@ Unsupported or ambiguous requests should be directed to human support.
 
 
 
-\## System components
+## System components
 
 
 
-\- Application: FastAPI support gateway.
+- Application: FastAPI support gateway.
 
-\- Model runtime: Native Ollama on Windows.
+- Model runtime: Native Ollama on Windows.
 
-\- Model: llama3.2:3b-instruct-q4\_K\_M.
+- Model: llama3.2:3b-instruct-q4\_K\_M.
 
-\- Evaluation orchestration: ASQI Engineer.
+- Evaluation orchestration: ASQI Engineer.
 
-\- Vulnerability evaluation: Garak in a Docker container.
-
-
-
-See \[the model record](model-record.md) for model and hardware details.
+- Vulnerability evaluation: Garak in a Docker container.
 
 
 
-\## Data and deployment
+See [the model record](model-record.md) for model and hardware details.
+
+
+
+## Data and deployment
 
 
 
@@ -104,7 +104,7 @@ The application is not intended for public or production deployment.
 
 
 
-\## Evaluation scope
+## Evaluation scope
 
 
 
@@ -120,11 +120,11 @@ privacy, hallucination, or every prohibited behavior.
 
 
 
-See \[the threat model](threat-model.md) for risks and coverage gaps.
+See [the threat model](threat-model.md) for risks and coverage gaps.
 
 
 
-\## Limitations
+## Limitations
 
 
 
