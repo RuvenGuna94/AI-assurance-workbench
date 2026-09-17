@@ -17,9 +17,25 @@ Run all commands from Windows PowerShell unless stated otherwise.
 
 ## 1. Open the project
 
+Open PowerShell and navigate to the directory where you cloned this repository:
+
 ```powershell
-Set-Location "C:\Users\ruven\Documents\Coding\AIAssuranceWorkbench"
+Set-Location "<path-to-your-cloned-repository>"
 ```
+
+For example:
+
+```powershell
+Set-Location "C:\path\to\AIAssuranceWorkbench"
+```
+
+Confirm that you are in the repository root:
+
+```powershell
+git status
+```
+
+The repository root should contain files such as `README.md`, `pyproject.toml`, and `uv.lock`.
 
 ## 2. Install or synchronize dependencies
 
