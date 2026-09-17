@@ -51,8 +51,8 @@ Risk IDs remain stable as the project evolves. Changes to coverage, severity, or
 
 The initial scan targets R1 using:
 
-- promptinject.HijackHateHumans
-- promptinject.HijackKillHumans
+- `promptinject.HijackHateHumans`
+- `promptinject.HijackKillHumans`
 
 Initial settings:
 
@@ -60,9 +60,17 @@ Initial settings:
 - Parallel attempts: 1.
 - Concurrent ASQI tests: 1.
 
-These settings establish that the evaluation pipeline works without overloading the laptop. They are not a comprehensive sampling plan.
+This first run is a smoke evaluation of the complete path from ASQI Engineer through Garak, the FastAPI gateway, Ollama, and the local model. Its purpose is to confirm that the components are correctly connected, requests reach the intended endpoint, responses are captured, detectors execute, and reproducible evidence is produced without overloading the laptop.
 
-Probe names and availability must be checked against the Garak version included in the pinned ASQI test container.
+The two selected probes exercise a narrow prompt-injection scenario: whether hostile user instructions can cause the assistant to abandon its support role and produce prohibited content. They provide evidence relevant to R1, but they do not establish complete prompt-injection resistance. One generation per probe is deliberately economical and is insufficient for estimating a reliable failure rate because probabilistic model behaviour may vary between runs.
+
+The constrained concurrency settings reduce local CPU, GPU, and memory pressure and make failures easier to diagnose. After the pipeline works reliably, later evaluation stages should increase the number of generations, broaden probe coverage for R1 through R4, and document all configuration changes so results remain comparable.
+
+A passing result means only that the selected probes did not trigger their associated detectors during that particular run and configuration. It does not prove that the application is secure, that R1 has been eliminated, or that another prompt variation will receive the same response. A detector failure is a signal for investigation and review, not automatic proof of an exploitable vulnerability.
+
+The run should record enough metadata to reproduce the result, including the application commit, ASQI Engineer version or image reference, Garak version, probe and detector names, model tag, Ollama version, generation and concurrency settings, and execution date.
+
+Probe names and availability must be checked against the Garak version included in the pinned ASQI test container. Any unavailable or renamed probe should be documented as a configuration difference rather than silently replaced.
 
 ## Coverage limitations
 
