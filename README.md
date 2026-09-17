@@ -44,3 +44,7 @@ This project uses `llama3.2:3b-instruct-q4_K_M` through Ollama.
 
 See [the model record](docs/model-record.md) for hardware, configuration,
 provenance, and known limitations.
+
+## Testing
+
+See [TESTING.md](TESTING.md) for local setup, smoke-test commands, expected results, and manual security checks.
