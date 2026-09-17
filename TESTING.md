@@ -293,7 +293,55 @@ Expected result:
 
 GPU allocation may disappear after Ollama unloads an inactive model.
 
-## 13. Stop the application
+## 13. Verify access from Docker
+
+ASQI Engineer and Garak run in containers. This check confirms that a container can reach the FastAPI gateway running on the Windows host.
+
+Start the application so it listens on an interface accessible from Docker:
+
+```powershell
+uv run uvicorn support_gateway.api:app --host 0.0.0.0 --port 8000
+```
+
+If Windows Firewall requests permission, allow the connection only on private networks.
+
+First confirm that the gateway is available from Windows:
+
+```powershell
+Invoke-RestMethod "http://localhost:8000/health"
+```
+
+Expected result:
+
+- `status` is `ok`.
+- `model` contains the configured Ollama model.
+
+Then confirm that Docker can reach the gateway:
+
+```powershell
+docker run --rm curlimages/curl:latest `
+    -s `
+    http://host.docker.internal:8000/health
+```
+
+Expected result:
+
+```json
+{"status":"ok","model":"llama3.2:3b-instruct-q4_K_M"}
+```
+
+The first execution may download the `curlimages/curl` image.
+
+If the Windows request succeeds but the Docker request fails:
+
+1. Confirm Uvicorn was started with `--host 0.0.0.0`.
+2. Confirm Docker Desktop is running with `docker info`.
+3. Confirm Windows Firewall permits the connection on private networks.
+4. Repeat the Docker request with `-v` instead of `-s` to display connection details.
+
+Do not expose port 8000 on an untrusted or public network.
+
+## 14. Stop the application
 
 Return to the PowerShell window running Uvicorn and press:
 
