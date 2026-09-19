@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 
 from support_gateway import api
 
-
 client = TestClient(api.app)
 
 AUTH_HEADERS = {
