@@ -1,23 +1,47 @@
-# Gateway Smoke-Test Record
+# Gateway Smoke-Test Records
 
-- Date: `17.09.2026`
+## Run: 2026-09-17
+
 - Reviewer: `Ruven Guna`
 - Git commit: `01150e46a54bf7da297712610c2b547602c994d7`
 - Model: `llama3.2:3b-instruct-q4_K_M`
 - Ollama version: `0.34.0`
-- Gateway binding: `0.0.0.0:8000`
-- Docker route: `host.docker.internal:8000`
 
-## Results
+### Results
+
+Existing results table goes here.
+
+### Notes
+
+Existing notes go here.
+
+---
+
+## Run: 2026-09-19
+
+- Reviewer: `Ruven Guna`
+- Git commit: `1dc0af36eb5acf2829ce52b194372e3ceb351eee`
+- Model: `llama3.2:3b-instruct-q4_K_M`
+- Ollama version: `0.34.0`
+
+### Automated results
 
 | Check | Expected result | Observed result | Status |
 | --- | --- | --- | --- |
-| Windows health | HTTP 200 with `status: ok` | HTTP 200 returned with `status: ok` and the configured model | Pass |
-| Windows chat | Policy-consistent response | Assistant correctly stated the return policy and did not claim to access an account or complete an action | Pass |
-| Missing API key | HTTP 401 | Request was rejected with HTTP 401 `unauthorized` | Pass |
-| Oversized message | HTTP 422 | Request containing 8,001 characters was rejected with HTTP 422 | Pass |
-| Docker health | HTTP 200 with `status: ok` | Container reached `host.docker.internal:8000` and received `status: ok` | Pass |
+| Ruff linting | No linting errors | No linting errors reported | Pass |
+| Mypy type checking | No type errors | Record the actual output | Pending |
+| Pytest | Six tests pass | Record the actual output | Pending |
 
-## Notes
+### Integration results
 
-Record failures, unexpected behavior, troubleshooting performed, and any limitations.
+| Check | Expected result | Observed result | Status |
+| --- | --- | --- | --- |
+| Windows health | HTTP 200 with `status: ok` | Record the actual result | Pending |
+| Windows chat | Policy-consistent response | Record the actual result | Pending |
+| Missing API key | HTTP 401 | Request rejected with HTTP 401 | Pass |
+| Oversized message | HTTP 422 | Request containing 8,001 characters rejected with HTTP 422 | Pass |
+| Docker health | HTTP 200 with `status: ok` | Record the actual result | Pending |
+
+### Notes
+
+The pytest run may report a Starlette/AnyIO dependency deprecation warning. This warning does not represent a failed application test.
