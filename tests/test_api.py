@@ -128,6 +128,23 @@ def test_chat_rejects_empty_message() -> None:
     assert response.status_code == 422
 
 
+def test_chat_rejects_oversized_message() -> None:
+    response = client.post(
+        "/v1/chat/completions",
+        headers=AUTH_HEADERS,
+        json={
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "A" * 8001,
+                }
+            ]
+        },
+    )
+
+    assert response.status_code == 422
+
+
 def test_gateway_enforces_request_controls(monkeypatch) -> None:
     monkeypatch.setattr(
         api.httpx,
