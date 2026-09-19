@@ -26,3 +26,8 @@ Each reviewed test record should identify:
 - Known limitations or deviations.
 
 A successful command execution does not necessarily mean that the evaluated behavior passed.
+
+## Reviewed evidence
+
+- [Local environment record](reviewed/environment-record.md)
+- [Gateway smoke-test record](reviewed/gateway-smoke-test.md)
