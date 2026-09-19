@@ -1,6 +1,8 @@
 # Testing Guide
 
-This guide describes the local smoke tests for the Northstar Support Gateway. Run these checks before executing the broader ASQI Engineer and Garak evaluation.
+This guide describes the automated gateway contract tests and manual smoke tests for the Northstar Support Gateway. Run these checks before executing the broader ASQI Engineer and Garak evaluation.
+
+The automated tests verify repeatable application controls with a mocked Ollama HTTP response. The manual tests verify the complete local path through FastAPI, Ollama, the language model, the GPU, and Docker. Neither test layer replaces model-backed security evaluation through ASQI Engineer and Garak.
 
 These tests use synthetic prompts and a locally hosted Ollama model. Do not enter real customer information, passwords, payment-card numbers, API keys, or production data.
 
@@ -11,7 +13,8 @@ The following components must be installed:
 - Python 3.12 managed through `uv`.
 - Ollama for Windows.
 - `llama3.2:3b-instruct-q4_K_M`.
-- The project dependencies from `pyproject.toml`.
+- The project dependencies and development dependencies from `pyproject.toml`.
+- Docker Desktop for the Docker connectivity check.
 
 Run all commands from Windows PowerShell unless stated otherwise.
 
@@ -73,6 +76,81 @@ Expected result:
 Northstar Support Gateway
 ```
 
+### Automated gateway contract tests
+
+The automated test suite verifies the FastAPI gateway contract without starting Ollama, Uvicorn, Docker, or the language model. The outbound Ollama HTTP call is replaced with a controlled mock response.
+
+The suite checks:
+
+- Health endpoint behavior.
+- API-key enforcement.
+- Rejection of empty and oversized messages.
+- Removal of caller-supplied system messages.
+- Insertion of the trusted system policy.
+- Fixed temperature and output-token limits.
+- Translation of an Ollama connection failure into an HTTP 502 response.
+
+Check that the code is correctly formatted without modifying it:
+
+```powershell
+uv run ruff format --check "src" "tests"
+```
+
+Expected result:
+
+- The command exits successfully.
+- Ruff reports that the checked files are already formatted.
+- The number of files reported may vary as the project evolves.
+
+Run the linter:
+
+```powershell
+uv run ruff check "src" "tests"
+```
+
+Expected result:
+
+```text
+All checks passed!
+```
+
+Run the type checker:
+
+```powershell
+uv run mypy "src"
+```
+
+Expected result:
+
+```text
+Success: no issues found
+```
+
+Run the automated tests:
+
+```powershell
+uv run pytest -q
+```
+
+Expected result:
+
+```text
+.....                                                                    [100%]
+6 passed
+```
+
+The test count and execution time may change as the suite evolves. All collected tests should pass.
+
+Generate a terminal coverage report:
+
+```powershell
+uv run pytest --cov=support_gateway --cov-report=term-missing
+```
+
+The coverage report shows which Python lines were executed. A high coverage percentage does not establish that the language model is secure or that all application requirements have been tested.
+
+These tests validate deterministic gateway controls and error handling. They do not evaluate the quality, safety, or adversarial behavior of the language model.
+
 ## 4. Verify Ollama
 
 Check the Ollama version:
@@ -121,14 +199,16 @@ These variables apply only to the current PowerShell window. `local-lab-key` is 
 ## 6. Start the application
 
 ```powershell
-uv run uvicorn support_gateway.api:app --host 127.0.0.1 --port 8000
+uv run uvicorn support_gateway.api:app --host 0.0.0.0 --port 8000
 ```
 
 Expected result:
 
 ```text
-Uvicorn running on http://127.0.0.1:8000
+Uvicorn running on http://0.0.0.0:8000
 ```
+
+Binding to `0.0.0.0` allows the later Docker connectivity check to reach the gateway. If Windows Firewall requests permission, allow access only on private networks. Do not expose port 8000 on an untrusted or public network.
 
 Keep this PowerShell window open. Run the remaining checks from a second PowerShell window.
 
@@ -297,13 +377,7 @@ GPU allocation may disappear after Ollama unloads an inactive model.
 
 ASQI Engineer and Garak run in containers. This check confirms that a container can reach the FastAPI gateway running on the Windows host.
 
-Start the application so it listens on an interface accessible from Docker:
-
-```powershell
-uv run uvicorn support_gateway.api:app --host 0.0.0.0 --port 8000
-```
-
-If Windows Firewall requests permission, allow the connection only on private networks.
+Keep the Uvicorn process started earlier running. It already listens on `0.0.0.0:8000`, allowing both Windows and Docker to reach the gateway.
 
 First confirm that the gateway is available from Windows:
 
@@ -356,6 +430,10 @@ Record the following with evaluation evidence:
 - Test date and reviewer.
 - Git commit hash.
 - Model tag.
+- Ruff formatting and linting result.
+- Mypy result.
+- Pytest test count and result.
+- Coverage percentage.
 - Ollama version.
 - Application configuration.
 - Commands executed.
@@ -369,4 +447,8 @@ Obtain the current commit hash with:
 git rev-parse HEAD
 ```
 
-Manual smoke tests confirm that the basic application path and controls operate as expected. They do not replace the ASQI Engineer and Garak evaluation or establish complete security.
+The recorded commit hash must identify the exact committed code that was tested. If tests are first run against uncommitted changes, commit those changes, rerun the checks, confirm that the working tree is clean, and then record the new commit hash.
+
+Raw or temporary output should be stored under `evidence/local/`, which is excluded from Git. Only reviewed and sanitised summaries should be copied to `evidence/reviewed/` and committed. Do not commit credentials, personal paths, production data, model binaries, `.coverage`, `.pytest_cache/`, or generated HTML coverage reports.
+
+Automated contract tests verify repeatable gateway behavior. Manual smoke tests confirm that the real application, model, GPU, and Docker route operate together. ASQI Engineer and Garak provide model-backed adversarial evaluation. Passing any one layer does not establish complete security, production readiness, or compliance.
