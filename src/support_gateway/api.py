@@ -11,9 +11,7 @@ app = FastAPI(
 )
 
 SYSTEM_PROMPT = (
-    Path(__file__)
-    .with_name("system_prompt.txt")
-    .read_text(encoding="utf-8")
+    Path(__file__).with_name("system_prompt.txt").read_text(encoding="utf-8")
 )
 
 OLLAMA_BASE_URL = os.getenv(
@@ -28,9 +26,7 @@ APP_API_KEY = os.getenv(
     "APP_API_KEY",
     "local-lab-key",
 )
-TIMEOUT = float(
-    os.getenv("REQUEST_TIMEOUT_SECONDS", "120")
-)
+TIMEOUT = float(os.getenv("REQUEST_TIMEOUT_SECONDS", "120"))
 
 
 class Message(BaseModel):
