@@ -1,4 +1,5 @@
 # Environment Record
+The reproducible installation commands and pinned toolchain are documented in [Tool Versions](../../docs/tool-versions.md).
 
 ## Record details
 
