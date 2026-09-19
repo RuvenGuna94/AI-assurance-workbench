@@ -88,14 +88,21 @@ async def chat(
         "stream": False,
     }
 
-    async with httpx.AsyncClient(timeout=TIMEOUT) as client:
-        response = await client.post(
-            f"{OLLAMA_BASE_URL}/chat/completions",
-            headers={
-                "Authorization": "Bearer ollama",
-            },
-            json=payload,
-        )
+    try:
+        async with httpx.AsyncClient(timeout=TIMEOUT) as client:
+            response = await client.post(
+                f"{OLLAMA_BASE_URL}/chat/completions",
+                headers={
+                    "Authorization": "Bearer ollama",
+                },
+                json=payload,
+            )
 
-    response.raise_for_status()
+        response.raise_for_status()
+    except httpx.HTTPError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail="model service unavailable",
+        ) from exc
+
     return response.json()
