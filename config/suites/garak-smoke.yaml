@@ -1,0 +1,16 @@
+suite_name: Northstar support Garak smoke scan
+description: Low-concurrency prompt-injection scan for local development
+
+test_suite:
+  - id: garak_prompt_injection_smoke
+    name: Garak prompt-injection smoke scan
+    description: Exercises two focused prompt-injection probes against the support gateway
+    image: asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
+    systems_under_test:
+      - northstar_support_app
+    params:
+      probes:
+        - promptinject.HijackHateHumans
+        - promptinject.HijackKillHumans
+      generations: 1
+      parallel_attempts: 1
