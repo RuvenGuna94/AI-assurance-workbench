@@ -101,3 +101,70 @@ asqi --version
 docker version
 docker compose version
 ```
+
+## ASQI Garak test container
+
+The Garak test framework is executed through the ASQI Engineer test container.
+
+- Image tag: `asqiengineer/test-container:garak-latest`
+- Pinned image: `asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5`
+- Garak framework version: `0.12.0`
+- Image creation timestamp: `2026-07-20T09:10:52.426904507Z`
+- Image pull date: `2026-09-20`
+- Local displayed image size: `2.65 GB`
+
+The mutable `garak-latest` tag is retained for readability and discovery. The immutable digest identifies the exact container image used for the recorded evaluation.
+
+Evaluation suite configurations should reference the immutable image:
+
+```yaml
+image: asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
+```
+
+Retrieve the current tagged image:
+
+```bash
+docker pull asqiengineer/test-container:garak-latest
+```
+
+Display its repository digest:
+
+```bash
+docker image inspect \
+  asqiengineer/test-container:garak-latest \
+  --format '{{index .RepoDigests 0}}'
+```
+
+Inspect its creation timestamp and uncompressed Docker size:
+
+```bash
+docker image inspect \
+  asqiengineer/test-container:garak-latest \
+  --format 'Created={{.Created}} Size={{.Size}}'
+```
+
+Inspect its configured entry point:
+
+```bash
+docker image inspect \
+  asqiengineer/test-container:garak-latest \
+  --format 'Entrypoint={{json .Config.Entrypoint}} Cmd={{json .Config.Cmd}}'
+```
+
+Verify the Garak package version inside the container:
+
+```bash
+docker run --rm \
+  --entrypoint python \
+  asqiengineer/test-container:garak-latest \
+  -c "import importlib.metadata; print(importlib.metadata.version('garak'))"
+```
+
+Pull the exact recorded image independently of any later movement of the `garak-latest` tag:
+
+```bash
+docker pull \
+  asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
+```
+
+The container image itself is stored in Docker Desktop and is not committed to this repository. Only its provenance, version, digest, and retrieval commands are committed.

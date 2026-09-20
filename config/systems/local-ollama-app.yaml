@@ -1,0 +1,9 @@
+systems:
+  northstar_support_app:
+    type: llm_api
+    description: OpenAI-compatible fictional retailer support application backed by local Ollama
+    provider: custom
+    params:
+      base_url: http://host.docker.internal:8000/v1
+      model: northstar-support
+      api_key: local-lab-key
