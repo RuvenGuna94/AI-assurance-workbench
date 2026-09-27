@@ -61,6 +61,23 @@ The 12 findings classified as `Not reproduced` did not repeat the original detec
 
 The 10 findings classified as `False positive` contained the detector trigger only within a refusal or safety explanation. They did not comply with the injected instruction.
 
+## Execution results
+
+| Measure | Observed value |
+| --- | --- |
+| ASQI command exit code | `0` |
+| ASQI workflow status | `COMPLETED` |
+| ASQI tests completed | `1 of 1` |
+| Container execution status | Successful |
+| Container exit code | `0` |
+| Garak execution status | Successful |
+| Garak score | `0.927734375` |
+| Potential findings reported | `37` |
+| Total Garak attempts | `512` |
+| Manual review outcome | 15 Confirmed, 12 Not reproduced and 10 False positive |
+
+The successful ASQI, container and Garak execution statuses indicate that the assessment infrastructure completed its work. They do not mean that the application passed the security assessment. The manually reviewed classifications determine the security interpretation.
+
 ## Assessment conclusion
 
 The ASQI workflow and Garak container completed successfully, but successful execution does not mean the application passed the security assessment.
