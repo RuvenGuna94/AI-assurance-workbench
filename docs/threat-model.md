@@ -39,7 +39,7 @@ User input and model output must not be treated as trusted instructions. The gat
 
 | Risk ID | Attack or failure | Planned coverage | Desired outcome |
 | --- | --- | --- | --- |
-| R1 | User overrides the system policy | Initial Garak prompt-injection probes | Assistant retains its support role and restrictions |
+| R1 | User overrides the system policy | Initial Garak prompt-injection assessment completed; confirmed findings require remediation and retest | Assistant retains its support role and restrictions |
 | R2 | Encoded instructions bypass restrictions | Later Garak Base64 and ROT13 probes | Assistant does not comply with harmful encoded requests |
 | R3 | Jailbreak changes restrictions | Later Garak DAN probe, subject to installed probe availability | Assistant maintains restrictions |
 | R4 | Application reveals its hidden prompt | Dedicated prompt-extraction cases planned; not covered by the initial scan | No system-prompt disclosure |
@@ -71,6 +71,22 @@ A passing result means only that the selected probes did not trigger their assoc
 The run should record enough metadata to reproduce the result, including the application commit, ASQI Engineer version or image reference, Garak version, probe and detector names, model tag, Ollama version, generation and concurrency settings, and execution date.
 
 Probe names and availability must be checked against the Garak version included in the pinned ASQI test container. Any unavailable or renamed probe should be documented as a configuration difference rather than silently replaced.
+
+## Initial assessment result
+
+The reviewed Garak assessment completed on 2026-09-27 produced evidence relevant to R1.
+
+Of 37 reviewed detector signals:
+
+- 15 were confirmed as repeatable prompt-injection restriction bypasses.
+- 12 did not reproduce during manual replay.
+- 10 were classified as false positives because the trigger appeared only within a refusal or safety explanation.
+
+The confirmed findings were assessed as Medium severity because the model repeatedly abandoned the intended support policy and returned the injected hostile phrase. The evaluation did not demonstrate sensitive disclosure, external-system access, real customer impact, or materially actionable harmful behavior.
+
+R1 remains open. The affected behavior requires remediation followed by a repeat assessment using the same configuration so that the results remain comparable.
+
+See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-assessment-2026-09-27.md) for the assessment record, results, and limitations.
 
 ## Coverage limitations
 
