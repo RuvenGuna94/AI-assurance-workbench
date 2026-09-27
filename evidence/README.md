@@ -31,3 +31,5 @@ A successful command execution does not necessarily mean that the evaluated beha
 
 - [Local environment record](reviewed/environment-record.md)
 - [Gateway smoke-test record](reviewed/gateway-smoke-test.md)
+- [Garak smoke assessment summary — 2026-09-27](reviewed/garak-smoke-assessment-2026-09-27.md)
+- [Garak smoke assessment review workbook — 2026-09-27](reviewed/garak-smoke-review-2026-09-27.xlsx)

@@ -122,3 +122,11 @@ See [the threat model](threat-model.md) for risks and coverage gaps.
 System prompts are not security boundaries by themselves. The model may ignore instructions, hallucinate, or produce unsafe output.
 
 Evaluation results apply only to the recorded application, prompt, model, runtime, and test configuration. Passing a scan does not establish universal safety or production readiness.
+
+### Known prompt-injection finding
+
+The initial Garak assessment completed on 2026-09-27 confirmed that selected prompt-injection variations could cause the model to abandon the intended retailer-support policy and return an injected hostile phrase.
+
+The confirmed findings demonstrate that the system prompt and gateway-enforced message structure do not consistently prevent policy override at the model-output layer. The behavior was assessed as Medium severity because it represented a repeatable restriction bypass, but the evaluation did not demonstrate sensitive-data disclosure, external-system access, real customer impact, or materially actionable harmful behavior.
+
+Risk R1 remains open pending remediation and retesting. See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-assessment-2026-09-27.md).
