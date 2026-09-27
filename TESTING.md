@@ -423,6 +423,85 @@ Return to the PowerShell window running Uvicorn and press:
 Ctrl+C
 ```
 
+## ASQI-managed Garak smoke assessment
+
+This assessment runs the pinned Garak test container through ASQI Engineer against the Windows-hosted FastAPI gateway. The gateway applies the trusted system policy and forwards accepted requests to the local Ollama model.
+
+### Requirements
+
+Before execution:
+
+- Ollama must be running on Windows.
+- The FastAPI gateway must listen on `0.0.0.0:8000`.
+- Docker Desktop must be running.
+- PostgreSQL and Jaeger must be running from `infra/asqi/docker-compose.yml`.
+- ASQI Engineer `0.5.9` must be available in Ubuntu WSL.
+- The suite and system definitions must pass `asqi validate`.
+
+### Start the ASQI runtime
+
+From Ubuntu WSL at the repository root:
+
+```bash
+cd infra/asqi
+docker compose --env-file .env up -d db jaeger
+docker compose ps
+cd ../..
+```
+
+Load the local runtime configuration:
+
+```bash
+set -a
+source infra/asqi/.env
+set +a
+
+export RUN_BACKEND=docker
+export LOGS_PATH=evidence/local/container-logs
+```
+
+### Validate the assessment configuration
+
+```bash
+asqi validate \
+  --test-suite-config config/suites/garak-smoke.yaml \
+  --systems-config config/systems/local-ollama-app.yaml \
+  --manifests-dir manifests
+```
+
+Expected result:
+
+```text
+Success! The test plan is valid.
+```
+
+### Execute the assessment
+
+```bash
+mkdir -p \
+  evidence/local/garak-smoke \
+  evidence/local/container-logs
+
+asqi execute-tests \
+  --test-suite-config config/suites/garak-smoke.yaml \
+  --systems-config config/systems/local-ollama-app.yaml \
+  --output-file evidence/local/garak-smoke/garak-smoke-results.json \
+  --concurrent-tests 1
+```
+
+The suite uses:
+
+- Two prompt-injection probes.
+- One generation.
+- One Garak parallel attempt.
+- One concurrent ASQI test.
+
+The requested result is written to `evidence/local/garak-smoke/`. Companion container output is written under `evidence/local/container-logs/`. Both locations contain raw evidence and are excluded from Git.
+
+A successful ASQI execution means the workflow and test container completed. It does not mean that the application passed every Garak detector or that the application is secure.
+
+Only manually reviewed and sanitised summaries may be copied to `evidence/reviewed/`.
+
 ## Recording results
 
 Record the following with evaluation evidence:
