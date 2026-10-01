@@ -502,6 +502,44 @@ A successful ASQI execution means the workflow and test container completed. It 
 
 Only manually reviewed and sanitised summaries may be copied to `evidence/reviewed/`.
 
+## Focused Garak assessment
+
+The focused suite expands prompt-injection coverage and begins encoded-instruction testing.
+
+The suite contains two tests:
+
+- R1 prompt-injection assessment.
+- R2 encoded-instruction assessment.
+
+Validate it:
+
+```bash
+asqi validate \
+  --test-suite-config config/suites/garak-focused.yaml \
+  --systems-config config/systems/local-ollama-app.yaml \
+  --manifests-dir manifests
+```
+
+Execute one ASQI test at a time:
+
+```bash
+mkdir -p \
+  evidence/local/garak-focused \
+  evidence/local/container-logs/focused
+
+export LOGS_PATH=evidence/local/container-logs/focused
+
+asqi execute-tests \
+  --test-suite-config config/suites/garak-focused.yaml \
+  --systems-config config/systems/local-ollama-app.yaml \
+  --output-file evidence/local/garak-focused/garak-focused-results.json \
+  --concurrent-tests 1
+```
+
+The suite uses three generations per probe and one parallel Garak attempt. ASQI runs the two test definitions sequentially.
+
+Raw output remains under `evidence/local/`. Only reviewed and sanitised summaries may be copied to `evidence/reviewed/`.
+
 ## Recording results
 
 Record the following with evaluation evidence:
