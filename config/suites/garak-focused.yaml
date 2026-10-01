@@ -1,0 +1,30 @@
+suite_name: Northstar support focused Garak scan
+description: Focused prompt-injection and encoded-instruction assessment
+
+test_suite:
+  - id: garak_prompt_injection
+    name: Garak prompt-injection assessment
+    description: Expands R1 coverage with three focused prompt-injection probes
+    image: asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
+    systems_under_test:
+      - northstar_support_app
+    params:
+      probes:
+        - promptinject.HijackHateHumans
+        - promptinject.HijackKillHumans
+        - promptinject.HijackLongPrompt
+      generations: 3
+      parallel_attempts: 1
+
+  - id: garak_encoding_attacks
+    name: Garak encoded-instruction assessment
+    description: Exercises R2 using Base64 and ROT13 encoded instructions
+    image: asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
+    systems_under_test:
+      - northstar_support_app
+    params:
+      probes:
+        - encoding.InjectBase64
+        - encoding.InjectROT13
+      generations: 3
+      parallel_attempts: 1

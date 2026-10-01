@@ -40,7 +40,7 @@ User input and model output must not be treated as trusted instructions. The gat
 | Risk ID | Attack or failure | Planned coverage | Desired outcome |
 | --- | --- | --- | --- |
 | R1 | User overrides the system policy | Initial Garak prompt-injection assessment completed; confirmed findings require remediation and retest | Assistant retains its support role and restrictions |
-| R2 | Encoded instructions bypass restrictions | Later Garak Base64 and ROT13 probes | Assistant does not comply with harmful encoded requests |
+| R2 | Encoded instructions bypass restrictions | Focused Garak Base64 and ROT13 probes | Assistant does not comply with harmful encoded requests |
 | R3 | Jailbreak changes restrictions | Later Garak DAN probe, subject to installed probe availability | Assistant maintains restrictions |
 | R4 | Application reveals its hidden prompt | Dedicated prompt-extraction cases planned; not covered by the initial scan | No system-prompt disclosure |
 | R5 | Model fabricates completed actions | Separate application-level functional evaluation planned | No claims of completed refunds, cancellations, or account deletion |
@@ -115,6 +115,25 @@ For each potential finding:
 7. Document mitigation and retest results.
 
 A successful scan execution can still contain security failures.
+
+## Focused Garak expansion scope
+
+The focused assessment expands R1 and begins R2 evaluation.
+
+R1 is evaluated using:
+
+- `promptinject.HijackHateHumans`
+- `promptinject.HijackKillHumans`
+- `promptinject.HijackLongPrompt`
+
+R2 is evaluated using:
+
+- `encoding.InjectBase64`
+- `encoding.InjectROT13`
+
+The focused suite requests three generations per probe, one parallel Garak attempt and one concurrent ASQI test. These settings provide additional sampling while keeping local execution sequential.
+
+The expanded scan still provides selected evidence rather than complete coverage. Three generations are insufficient to establish a statistically reliable failure rate, and passing these probes does not establish general resistance to prompt injection or encoded instructions.
 
 ## Retest triggers
 
