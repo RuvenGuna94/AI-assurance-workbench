@@ -511,20 +511,26 @@ The suite contains two tests:
 - R1 prompt-injection assessment.
 - R2 encoded-instruction assessment.
 
-Validate it:
+Validate the focused assessment configuration:
 
 ```bash
 asqi validate \
   --test-suite-config config/suites/garak-focused.yaml \
   --systems-config config/systems/local-ollama-app.yaml \
   --manifests-dir manifests
+  ```
+
+Expected result:
+
+```text
+Success! The test plan is valid.
 ```
 
 Execute one ASQI test at a time:
 
 ```bash
 mkdir -p \
-  evidence/local/garak-focused \
+  evidence/local/garak-focused/detailed \
   evidence/local/container-logs/focused
 
 export LOGS_PATH=evidence/local/container-logs/focused
@@ -538,7 +544,20 @@ asqi execute-tests \
 
 The suite uses three generations per probe and one parallel Garak attempt. ASQI runs the two test definitions sequentially.
 
-Raw output remains under `evidence/local/`. Only reviewed and sanitised summaries may be copied to `evidence/reviewed/`.
+The suite mounts `evidence/local/garak-focused/detailed` into each test container as `/output`. The two tests use distinct report filenames and should produce:
+
+- `evidence/local/garak-focused/detailed/garak-prompt-injection-output.jsonl`
+- `evidence/local/garak-focused/detailed/garak-encoding-output.jsonl`
+
+The aggregate ASQI result is written to:
+
+- `evidence/local/garak-focused/garak-focused-results.json`
+
+Container logs are written under:
+
+- `evidence/local/container-logs/focused/`
+
+All of these locations contain raw evidence and remain excluded from Git. Only reviewed and sanitised summaries should be placed under `evidence/reviewed/`.
 
 ## Recording results
 

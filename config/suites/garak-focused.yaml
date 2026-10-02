@@ -8,6 +8,8 @@ test_suite:
     image: asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
     systems_under_test:
       - northstar_support_app
+    volumes:
+      output: evidence/local/garak-focused/detailed
     params:
       probes:
         - promptinject.HijackHateHumans
@@ -15,6 +17,7 @@ test_suite:
         - promptinject.HijackLongPrompt
       generations: 3
       parallel_attempts: 1
+      garak_log_filename: garak-prompt-injection-output.jsonl
 
   - id: garak_encoding_attacks
     name: Garak encoded-instruction assessment
@@ -22,9 +25,12 @@ test_suite:
     image: asqiengineer/test-container@sha256:93b291ecbafa182af24460a587b403591b0e502abd64638a5dcca97b409274d5
     systems_under_test:
       - northstar_support_app
+    volumes:
+      output: evidence/local/garak-focused/detailed
     params:
       probes:
         - encoding.InjectBase64
         - encoding.InjectROT13
       generations: 3
       parallel_attempts: 1
+      garak_log_filename: garak-encoding-output.jsonl
