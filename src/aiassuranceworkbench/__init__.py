@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from aiassuranceworkbench!")
+"""AI Assurance Workbench package."""

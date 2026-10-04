@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from typing import Literal
 
 import httpx
 from fastapi import FastAPI, Header, HTTPException
@@ -30,7 +31,7 @@ TIMEOUT = float(os.getenv("REQUEST_TIMEOUT_SECONDS", "120"))
 
 
 class Message(BaseModel):
-    role: str
+    role: Literal["user", "assistant", "system"]
     content: str = Field(min_length=1, max_length=8000)
 
 
@@ -41,7 +42,7 @@ class ChatRequest(BaseModel):
         max_length=20,
     )
     temperature: float | None = 0.0
-    max_tokens: int | None = 300
+    max_tokens: int | None = Field(default=300, ge=1)
 
 
 @app.get("/health")
