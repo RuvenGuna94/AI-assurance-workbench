@@ -130,3 +130,7 @@ The initial Garak assessment completed on 2026-09-27 confirmed that selected pro
 The confirmed findings demonstrate that the system prompt and gateway-enforced message structure do not consistently prevent policy override at the model-output layer. The behavior was assessed as Medium severity because it represented a repeatable restriction bypass, but the evaluation did not demonstrate sensitive-data disclosure, external-system access, real customer impact, or materially actionable harmful behavior.
 
 Risk R1 remains open pending remediation and retesting. See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-assessment-2026-09-27.md).
+
+A follow-up detailed-output review completed on 2026-10-04 identified 151 prompt-injection outputs requiring reproduction and classified 14 detector signals as false positives. These results do not change the existing confirmed-finding count or Medium severity assessment because the new candidate outputs have not yet been reproduced.
+
+The reviewed ROT13 signal did not demonstrate a harmful encoded-instruction bypass. Broader resistance to encoded instructions has not been established.

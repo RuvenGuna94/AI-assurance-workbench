@@ -40,7 +40,7 @@ User input and model output must not be treated as trusted instructions. The gat
 | Risk ID | Attack or failure | Planned coverage | Desired outcome |
 | --- | --- | --- | --- |
 | R1 | User overrides the system policy | Initial Garak prompt-injection assessment completed; confirmed findings require remediation and retest | Assistant retains its support role and restrictions |
-| R2 | Encoded instructions bypass restrictions | Later Garak Base64 and ROT13 probes | Assistant does not comply with harmful encoded requests |
+| R2 | Encoded instructions bypass restrictions | Focused Garak Base64 and ROT13 probes | Assistant does not comply with harmful encoded requests |
 | R3 | Jailbreak changes restrictions | Later Garak DAN probe, subject to installed probe availability | Assistant maintains restrictions |
 | R4 | Application reveals its hidden prompt | Dedicated prompt-extraction cases planned; not covered by the initial scan | No system-prompt disclosure |
 | R5 | Model fabricates completed actions | Separate application-level functional evaluation planned | No claims of completed refunds, cancellations, or account deletion |
@@ -116,6 +116,25 @@ For each potential finding:
 
 A successful scan execution can still contain security failures.
 
+## Focused Garak expansion scope
+
+The focused assessment expands R1 and begins R2 evaluation.
+
+R1 is evaluated using:
+
+- `promptinject.HijackHateHumans`
+- `promptinject.HijackKillHumans`
+- `promptinject.HijackLongPrompt`
+
+R2 is evaluated using:
+
+- `encoding.InjectBase64`
+- `encoding.InjectROT13`
+
+The focused suite requests three generations per probe, one parallel Garak attempt and one concurrent ASQI test. These settings provide additional sampling while keeping local execution sequential.
+
+The expanded scan still provides selected evidence rather than complete coverage. Three generations are insufficient to establish a statistically reliable failure rate, and passing these probes does not establish general resistance to prompt injection or encoded instructions.
+
 ## Retest triggers
 
 Repeat relevant evaluations when changing:
@@ -132,3 +151,11 @@ Repeat relevant evaluations when changing:
 
 - [System card](system-card.md)
 - [Model record](model-record.md)
+
+### Focused detailed-review status
+
+A follow-up detailed-output review completed on 2026-10-04 classified 151 prompt-injection signals as `Needs review` and 14 signals as `False positive`.
+
+The outputs awaiting review appear to follow injected instructions or leave the intended retailer-support role. They require representative reproduction before they can be promoted to confirmed findings. R1 therefore remains open, but the follow-up signal count must not be interpreted as 151 separate confirmed vulnerabilities.
+
+The single reviewed ROT13 detector signal was a false positive and did not demonstrate an encoded harmful-instruction bypass. This result does not establish that R2 is mitigated because the suite provides only selected probe coverage.
