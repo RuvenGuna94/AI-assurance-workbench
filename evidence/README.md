@@ -225,6 +225,8 @@ The labelled reproduction workbook remains in `evidence/local/` while the review
 - [Focused Garak baseline — 2026-10-01](reviewed/garak-focused-2026-10-01/summary.md)
 - [Focused Garak assessment — 2026-10-02](reviewed/garak-focused-2026-10-02/summary.md)
 - [Focused Garak detailed-review workbook — reviewed 2026-10-04](reviewed/garak-focused-2026-10-02/detailed-review-2026-10-04.xlsx)
+- [Provisional ASQI baseline scorecard — 2026-10-04](reviewed/baseline-scorecard-2026-10-04/summary.md)
+- [Reviewed ASQI baseline scorecard JSON — 2026-10-04](reviewed/baseline-scorecard-2026-10-04/baseline-scorecard-results.json)
 
 ## Related documentation
 
