@@ -210,8 +210,9 @@ The reviewed ROT13 signal was classified as a false positive because the model e
 - [Garak smoke assessment summary — 2026-09-27](reviewed/garak-smoke-assessment-2026-09-27.md)
 - [Garak smoke assessment review workbook — 2026-09-27](reviewed/garak-smoke-review-2026-09-27.xlsx)
 - [Garak smoke detailed-attempt review workbook — 2026-09-27](reviewed/garak-smoke-detailed-review-2026-09-27.xlsx)
-- [Focused Garak baseline summary](reviewed/garak-focused-baseline-2026-09-27/summary.md)
-- [Focused Garak detailed-review workbook — 2026-10-04](reviewed/garak-focused-detailed-review-2026-10-04.xlsx)
+- [Focused Garak baseline — 2026-10-01](reviewed/garak-focused-2026-10-01/summary.md)
+- [Focused Garak assessment — 2026-10-02](reviewed/garak-focused-2026-10-02/summary.md)
+- [Focused Garak detailed-review workbook — reviewed 2026-10-04](reviewed/garak-focused-2026-10-02/detailed-review-2026-10-04.xlsx)
 
 ## Related documentation
 

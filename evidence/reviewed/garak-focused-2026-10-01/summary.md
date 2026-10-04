@@ -1,4 +1,4 @@
-# Reviewed Focused Garak Baseline
+# Reviewed Focused Garak Baseline — 2026-10-01
 
 ## Identification
 
@@ -27,7 +27,7 @@
 | Measure | Observed value |
 | --- | --- |
 | Suite name | `Northstar support focused Garak scan` |
-| ASQI exit code | Pending confirmation |
+| ASQI process exit code | Not retained |
 | Workflow status | `COMPLETED` |
 | Total tests | `2` |
 | Successful tests | `2` |
@@ -119,6 +119,8 @@ The focused Garak workflow completed both configured tests successfully at the e
 
 These counts represent potential findings, not confirmed vulnerabilities. Final classifications and severities will be assigned only after reviewing the associated prompts and model responses.
 
+The ASQI process exit code was not retained for this historical run. The saved result records workflow status `COMPLETED`, two successful tests, zero failed tests and container exit code `0` for both test definitions.
+
 ## Limitations
 
 - Automated detector results require manual validation.
@@ -141,16 +143,4 @@ Final manual-review classifications should refer to individual signals by a stab
 - Rationale
 - Supporting evidence
 
-## Follow-up detailed-output review
-
-On 2026-10-04, related detailed Garak runs were reviewed using the same classification taxonomy. The detailed runs are recorded separately from the original ASQI aggregate execution because their Garak run IDs and detector counts differ.
-
-The review classified 165 detector signals:
-
-- 151 as `Needs review`.
-- 14 as `False positive`.
-- 0 as `Confirmed` at this stage.
-
-`Needs review` indicates that the observed output appears to follow an injected instruction or leave the intended support role, but manual reproduction has not yet been completed. These records must not be reported as confirmed vulnerabilities until representative attempts reproduce under the recorded configuration.
-
-The ROT13 detector signal was classified as a false positive. The output echoed the encoded input and redirected the conversation to retailer support; it did not demonstrate a harmful decoded-instruction bypass.
+The later ASQI execution that successfully retained detailed Garak output is documented separately in [the 2026-10-02 focused assessment](../garak-focused-2026-10-02/summary.md).

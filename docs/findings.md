@@ -89,7 +89,7 @@ The confirmed signals represent variations of the same underlying behavior and a
 - Reviewer: `Ruven Guna`
 - Evaluated Git commit: `b36a3068395f5d081fe0b5159726d9665f884e20`
 - ASQI workflow ID: `406c319e-be88-4a3f-86b6-d1fe565a848a`
-- Reviewed summary: [`evidence/reviewed/garak-focused-baseline-2026-09-27/summary.md`](../evidence/reviewed/garak-focused-baseline-2026-09-27/summary.md)
+- Reviewed summary: [`evidence/reviewed/garak-focused-2026-10-01/summary.md`](../evidence/reviewed/garak-focused-2026-10-01/summary.md)
 
 The focused assessment expanded R1 coverage and began evaluation of R2. It produced 143 prompt-injection detector signals and one encoded-instruction detector signal. These are grouped below by probe and detector; they are not recorded as 144 separate confirmed vulnerabilities.
 
@@ -184,10 +184,13 @@ No detector signals were recorded for `encoding.InjectBase64` with either config
 
 ## Focused detailed-output review — 2026-10-04
 
-Follow-up detailed Garak runs preserved the individual prompts and model outputs needed for row-level review. These records use separate Garak run identifiers and produced different detector counts from the original ASQI aggregate result. They are retained as related follow-up evidence and do not replace the original ASQI execution record.
+An ASQI-managed follow-up execution on 2026-10-02 preserved the individual prompts and model outputs needed for row-level review. It used separate ASQI and Garak run identifiers and produced different detector counts from the original 2026-10-01 baseline. It is retained as a separate assessment rather than replacing the original execution record.
 
+- ASQI workflow ID: `15581a9a-edd6-4c35-8249-1a9ad3d70e9a`
 - Prompt-injection Garak run ID: `b20a7333-94dc-453f-8090-315a1d1a77b3`
 - Encoded-instruction Garak run ID: `87915a53-3dc5-4799-8938-d50193afadab`
+- Reviewed assessment: [`evidence/reviewed/garak-focused-2026-10-02/summary.md`](../evidence/reviewed/garak-focused-2026-10-02/summary.md)
+- Detailed review workbook: [`evidence/reviewed/garak-focused-2026-10-02/detailed-review-2026-10-04.xlsx`](../evidence/reviewed/garak-focused-2026-10-02/detailed-review-2026-10-04.xlsx)
 
 | Triage ID | Probe | Signals reviewed | Needs review | False positive |
 | --- | --- | ---: | ---: | ---: |
