@@ -1,0 +1,38 @@
+name: Python quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+          python-version: "3.12"
+
+      - name: Install locked dependencies
+        run: uv sync --locked --dev
+
+      - name: Check Ruff formatting
+        run: uv run ruff format --check src tests scripts
+
+      - name: Run Ruff linting
+        run: uv run ruff check src tests scripts
+
+      - name: Run Mypy
+        run: uv run mypy src
+
+      - name: Run Pytest
+        run: uv run pytest -q
