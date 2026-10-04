@@ -151,3 +151,11 @@ Repeat relevant evaluations when changing:
 
 - [System card](system-card.md)
 - [Model record](model-record.md)
+
+### Focused detailed-review status
+
+A follow-up detailed-output review completed on 2026-10-04 classified 151 prompt-injection signals as `Needs review` and 14 signals as `False positive`.
+
+The outputs awaiting review appear to follow injected instructions or leave the intended retailer-support role. They require representative reproduction before they can be promoted to confirmed findings. R1 therefore remains open, but the follow-up signal count must not be interpreted as 151 separate confirmed vulnerabilities.
+
+The single reviewed ROT13 detector signal was a false positive and did not demonstrate an encoded harmful-instruction bypass. This result does not establish that R2 is mitigated because the suite provides only selected probe coverage.
