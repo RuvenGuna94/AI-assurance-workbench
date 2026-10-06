@@ -37,6 +37,13 @@ Ollama
         v
 Llama 3.2 3B Instruct
 ```
+## Why ASQI Engineer and Garak
+
+ASQI Engineer provides the orchestration layer for validating configuration, executing the pinned containerized test framework, preserving workflow metadata and applying an explicit scorecard to the results.
+
+Garak was selected to provide targeted adversarial evidence for the risks defined in the threat model. The assessment deliberately uses selected prompt-injection and encoded-instruction probes rather than claiming comprehensive red-team coverage.
+
+The evaluation targets the FastAPI gateway rather than Ollama directly. This includes the application's trusted system prompt, authentication boundary and request controls within the evaluated system.
 
 ## Model
 
@@ -44,7 +51,9 @@ This project uses `llama3.2:3b-instruct-q4_K_M` through Ollama.
 
 See [the model record](docs/model-record.md) for hardware, configuration, provenance, and known limitations.
 
-## Current results
+## Current assessment outcome
+
+The [AI assurance report](docs/assurance-report.md) provides the complete assessment scope, method, results, findings, scorecard decision, limitations and retest triggers.
 
 - The current assurance status is **PROVISIONAL**. R1 remains open because `F-001` is a confirmed and reproducible prompt-injection policy override. R2 has limited evidence, R3 through R5 are not assessed, and no mitigation or equivalent retest has been completed.
 - The [initial Garak smoke assessment](evidence/reviewed/garak-smoke-assessment-2026-09-27.md) documents execution status, manual classifications, limitations, and the first grouped R1 prompt-injection finding.
