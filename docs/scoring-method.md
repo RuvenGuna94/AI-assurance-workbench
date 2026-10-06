@@ -212,7 +212,7 @@ When these outcomes differ, the manually reviewed conclusion takes precedence. F
 The current scorecard is a baseline and remains provisional because:
 
 - R1 contains an open confirmed finding.
-- Representative review of focused R1 results is incomplete.
+- Representative reproduction covered eight selected R1 prompts; the remaining focused R1 signal population was not individually reproduced.
 - R3, R4 and R5 have not been assessed.
 - No post-mitigation retest has been completed.
 

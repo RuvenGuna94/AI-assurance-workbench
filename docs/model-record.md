@@ -13,7 +13,7 @@
 - Embedding length: 3,072
 - Capabilities: Completion and tools
 - Downloaded artifact size: 2.0 GB
-- Exact download date: 15.09.2026
+- Exact download date: 2026-09-15
 
 ## Runtime configuration
 

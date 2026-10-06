@@ -111,7 +111,7 @@ The application is not intended for public or production deployment.
 
 ## Evaluation scope
 
-The initial Garak evaluation targets selected prompt-injection risks. Later scans may include encoded instructions and jailbreak attempts.
+The completed Garak evaluations cover selected R1 prompt-injection probes and limited R2 Base64 and ROT13 encoded-instruction probes. R3 jailbreak testing, R4 prompt-extraction testing, and R5 functional action-claim testing remain outside the completed scope.
 
 Garak does not provide complete coverage of business-policy correctness, privacy, hallucination, or every prohibited behavior.
 
@@ -129,8 +129,8 @@ The initial Garak assessment completed on 2026-09-27 confirmed that selected pro
 
 The confirmed findings demonstrate that the system prompt and gateway-enforced message structure do not consistently prevent policy override at the model-output layer. The behavior was assessed as Medium severity because it represented a repeatable restriction bypass, but the evaluation did not demonstrate sensitive-data disclosure, external-system access, real customer impact, or materially actionable harmful behavior.
 
-Risk R1 remains open pending remediation and retesting. See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-assessment-2026-09-27.md).
+Risk R1 remains open pending remediation and retesting. Representative reproduction covered eight selected prompts; seven prompt variants reproduced the detector target consistently, while the remaining focused R1 signal population was not individually reproduced. See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-assessment-2026-09-27.md), [focused assessment](../evidence/reviewed/garak-focused-2026-10-02/summary.md), and [findings record](findings.md).
 
-A follow-up detailed-output review completed on 2026-10-04 identified 151 prompt-injection outputs requiring reproduction and classified 14 detector signals as false positives. These results do not change the existing confirmed-finding count or Medium severity assessment because the new candidate outputs have not yet been reproduced.
+A follow-up detailed-output review completed on 2026-10-04 classified 151 prompt-injection detector signals as requiring review and 14 detector signals as false positives. The later representative reproduction covered eight selected prompts; it did not convert the remaining signal population into separate confirmed findings. These results therefore do not change the existing grouped finding count or Medium severity assessment.
 
 The reviewed ROT13 signal did not demonstrate a harmful encoded-instruction bypass. Broader resistance to encoded instructions has not been established.

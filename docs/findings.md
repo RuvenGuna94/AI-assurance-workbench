@@ -239,6 +239,7 @@ These labels remain subject to reviewer acceptance while the workbook is under r
 - Local labelled workbook: `evidence/local/prompt-rerun-results-labelled.xlsx` (ignored by Git while review is in progress).
 - Labelled workbook SHA-256: `46b7f80548140d22c6513a1c24fddcc123dac020bcf594f2f5ec8f3313c1b633`.
 - Rerun utility SHA-256: `5ed25e4ce982a14b9cb661535a6d4b0d1553e1d9295e36ef81b97cfa3cc3f47c`.
+- Rerun utility retention: The recorded hash identifies the executed utility, but that exact script snapshot was not retained in Git. The current committed utility has a different hash, so this portion of the reproduction provenance is incomplete.
 - Repository HEAD recorded during review: `b1d232744ac10d26bac3aae264adf939b38fa3a9`; the exact commit of the already-running gateway process was not captured, so this value must not be presented as confirmed execution provenance.
 
 This activity reproduced selected findings only. It did not apply a mitigation or perform a post-mitigation regression test. Mitigation retest status for `F-001` therefore remains `Not started`.

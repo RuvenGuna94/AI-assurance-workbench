@@ -41,19 +41,19 @@ The `db` service provides PostgreSQL for DBOS workflow and step state. This allo
 
 The upstream runtime uses a pgvector-enabled PostgreSQL image. The initial Garak evaluation does not use vector storage or similarity search; PostgreSQL is used for ordinary DBOS workflow persistence.
 
-PostgreSQL is exposed locally on port `5432`.
+PostgreSQL is bound to the host loopback interface on port `5432`.
 
 ### Jaeger
 
 The `jaeger` service receives and displays supported OpenTelemetry traces from ASQI workflows.
 
-The Jaeger web interface is exposed locally on port `16686`. Its OpenTelemetry receivers are exposed on ports `4317` and `4318`.
+The Jaeger web interface is bound to the host loopback interface on port `16686`. Its OpenTelemetry receivers are bound to the host loopback interface on ports `4317` and `4318`.
 
 Tracing is operational evidence and does not replace ASQI or Garak evaluation results.
 
 ## LiteLLM decision
 
-The upstream ASQI runtime includes LiteLLM as an optional OpenAI-compatible model-provider proxy. This project does not use LiteLLM because the FastAPI support gateway already exposes the OpenAI-compatible endpoint required by ASQI and Garak.
+The upstream ASQI runtime includes LiteLLM as an optional OpenAI-compatible model-provider proxy. This project does not include or use LiteLLM because the FastAPI support gateway already exposes the OpenAI-compatible endpoint required by ASQI and Garak.
 
 LiteLLM may be considered in a later extension involving multiple providers, centralized provider credentials, model routing, or fallback behavior.
 

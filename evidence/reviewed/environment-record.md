@@ -59,3 +59,4 @@ docker version
 docker compose version
 docker run --rm hello-world
 git rev-parse HEAD
+```

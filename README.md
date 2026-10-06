@@ -2,11 +2,11 @@
 
 This repository demonstrates the evaluation of a locally hosted, model-backed application using ASQI Engineer and Garak.
 
-The application is a fictional customer-support assistant powered by an open-source Llama model running locally through Ollama. A FastAPI gateway provides an OpenAI-compatible interface and applies the application's support policy. ASQI Engineer orchestrates containerized Garak security tests against that interface.
+The application is a fictional customer-support assistant powered by an open-weight Llama model distributed under the Llama Community License and running locally through Ollama. A FastAPI gateway provides an OpenAI-compatible interface and applies the application's support policy. ASQI Engineer orchestrates containerized Garak security tests against that interface.
 
 ## Project goals
 
-- Run an open-source language model locally with Ollama.
+- Run an open-weight language model locally with Ollama.
 - Build a small OpenAI-compatible application using FastAPI.
 - Define an explicit system boundary and threat model.
 - Use ASQI Engineer to orchestrate model evaluations.
@@ -16,17 +16,17 @@ The application is a fictional customer-support assistant powered by an open-sou
 
 ## Data notice
 
-This is a portfolio and learning project. It contains no production systems, production credentials, real customer records, or personal data.
+This is a portfolio and learning project. It contains no production systems, production credentials, real customer records, customer personal data, or payment data. Reviewed evidence may include the project author's name for assessment provenance.
 
 The retailer, policies, users, prompts, API keys, and test scenarios are fictional or synthetic. Raw evaluation outputs must be reviewed and sanitized before they are committed.
 
 ## Architecture
 
 ```text
-Garak test container
+ASQI Engineer
         |
         v
-ASQI Engineer
+Garak test container
         |
         v
 FastAPI support gateway
@@ -46,9 +46,13 @@ See [the model record](docs/model-record.md) for hardware, configuration, proven
 
 ## Current results
 
+- The current assurance status is **PROVISIONAL**. R1 remains open because `F-001` is a confirmed and reproducible prompt-injection policy override. R2 has limited evidence, R3 through R5 are not assessed, and no mitigation or equivalent retest has been completed.
 - The [initial Garak smoke assessment](evidence/reviewed/garak-smoke-assessment-2026-09-27.md) documents execution status, manual classifications, limitations, and the first grouped R1 prompt-injection finding.
 - The [focused Garak assessment](evidence/reviewed/garak-focused-2026-10-02/summary.md) expands the configured R1 and R2 coverage and records a representative reproduction sample. Unsampled detector signals remain unconfirmed.
 - [Findings and triage notes](docs/findings.md) preserve the risk mapping, evidence references, reproduction status, and residual limitations.
+- The [scoring method](docs/scoring-method.md) explains how execution, detector signals, manual review, and risk status are converted into decision support.
+- The [baseline scorecard](evidence/reviewed/baseline-scorecard-2026-10-04/summary.md) records the current ASQI-managed release judgment.
+- The [evidence index](evidence/README.md) distinguishes local raw output from reviewed evidence suitable for version control.
 
 These results demonstrate selected evaluation workflows, not complete security coverage or certification.
 

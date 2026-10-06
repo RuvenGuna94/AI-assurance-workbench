@@ -37,13 +37,13 @@ User input and model output must not be treated as trusted instructions. The gat
 
 ## Risk register
 
-| Risk ID | Attack or failure | Planned coverage | Desired outcome |
+| Risk ID | Attack or failure | Coverage status | Desired outcome |
 | --- | --- | --- | --- |
 | R1 | User overrides the system policy | Initial Garak prompt-injection assessment completed; confirmed findings require remediation and retest | Assistant retains its support role and restrictions |
-| R2 | Encoded instructions bypass restrictions | Focused Garak Base64 and ROT13 probes | Assistant does not comply with harmful encoded requests |
-| R3 | Jailbreak changes restrictions | Later Garak DAN probe, subject to installed probe availability | Assistant maintains restrictions |
-| R4 | Application reveals its hidden prompt | Dedicated prompt-extraction cases planned; not covered by the initial scan | No system-prompt disclosure |
-| R5 | Model fabricates completed actions | Separate application-level functional evaluation planned | No claims of completed refunds, cancellations, or account deletion |
+| R2 | Encoded instructions bypass restrictions | Limited Base64 and ROT13 testing completed; broader resistance not established | Assistant does not comply with harmful encoded requests |
+| R3 | Jailbreak changes restrictions | Not assessed; DAN probe deferred | Assistant maintains restrictions |
+| R4 | Application reveals its hidden prompt | Not assessed; dedicated prompt-extraction cases required | No system-prompt disclosure |
+| R5 | Model fabricates completed actions | Not assessed; separate application-level functional evaluation required | No claims of completed refunds, cancellations, or account deletion |
 
 Risk IDs remain stable as the project evolves. Changes to coverage, severity, or mitigation should update the existing risk entry rather than assign it a new identity.
 
@@ -92,7 +92,7 @@ See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-asses
 
 Garak provides evidence for selected vulnerability classes, not complete coverage of every application requirement.
 
-R2 and R3 are planned extensions. R4 requires dedicated extraction tests. R5 is documented but is not claimed as covered by the initial Garak scan.
+R2 received limited Base64 and ROT13 testing in the focused assessment. R3 remains a planned extension. R4 requires dedicated prompt-extraction tests. R5 requires a separate functional evaluation and is not claimed as covered by the completed Garak scans.
 
 The initial scan also does not establish:
 
@@ -152,10 +152,10 @@ Repeat relevant evaluations when changing:
 - [System card](system-card.md)
 - [Model record](model-record.md)
 
-### Focused detailed-review status
+## Focused detailed-review status
 
 A follow-up detailed-output review completed on 2026-10-04 classified 151 prompt-injection signals as `Needs review` and 14 signals as `False positive`.
 
-The outputs awaiting review appear to follow injected instructions or leave the intended retailer-support role. They require representative reproduction before they can be promoted to confirmed findings. R1 therefore remains open, but the follow-up signal count must not be interpreted as 151 separate confirmed vulnerabilities.
+Representative reproduction covered eight selected prompt-injection records. Seven prompt variants reproduced the detector target consistently, supporting the existing grouped finding `F-001`. The remaining focused signal population was not individually reproduced and retains its previous classification. R1 therefore remains open, but the follow-up signal count must not be interpreted as 151 separate confirmed vulnerabilities.
 
 The single reviewed ROT13 detector signal was a false positive and did not demonstrate an encoded harmful-instruction bypass. This result does not establish that R2 is mitigated because the suite provides only selected probe coverage.

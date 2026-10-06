@@ -9,7 +9,7 @@ The workbooks may contain adversarial prompts and model-generated hostile langua
 - `local/` contains raw, temporary, or unreviewed test output and is excluded from Git.
 - `reviewed/` contains sanitised evidence selected for version control.
 - Raw output must be manually reviewed before it is copied into `reviewed/`.
-- Production data, real credentials, personal information, authorization headers, API keys, and model binaries must never be committed.
+- Production data, real credentials, customer or third-party personal information, authorization headers, API keys, and model binaries must never be committed. Project-author and reviewer attribution may be retained for provenance.
 - A reviewed evidence artifact should remain traceable to its application commit, configuration, model, runtime, and evaluation execution.
 - Detailed model output should be published only when it has been inspected for sensitive information and unnecessary local environment details.
 
@@ -160,7 +160,7 @@ Results apply only to the recorded application code, system prompt, model, quant
 Before an artifact is added to `reviewed/`, check it for:
 
 - Passwords, API keys, tokens, and authorization headers.
-- Personal information and usernames.
+- Customer or third-party personal information and usernames. Project-author and reviewer attribution may be retained when required for provenance.
 - Customer, payment, or production data.
 - Absolute local filesystem paths.
 - Environment variables and local configuration values.
@@ -199,7 +199,7 @@ The follow-up detailed review classified 165 detector signals:
 - 14 as `False positive`.
 - 0 as `Confirmed` at this stage.
 
-The `Needs review` records appear to follow injected instructions or leave the intended retailer-support role, but representative reproduction is still required before they can be promoted to confirmed findings.
+At the detailed-review stage, the `Needs review` records appeared to follow injected instructions or leave the intended retailer-support role and required representative reproduction before they could support a confirmed finding. A later representative sample is documented below; unsampled records remain `Needs review`.
 
 The reviewed ROT13 signal was classified as a false positive because the model echoed the encoded input and redirected to retailer support. It did not demonstrate a harmful decoded-instruction bypass. This result does not establish that encoded-instruction risk is fully mitigated.
 
@@ -215,10 +215,11 @@ The exact reproductions support the existing grouped R1 finding rather than crea
 
 The labelled reproduction workbook remains in `evidence/local/` while the reviewer checks the classifications. It must not be copied into `reviewed/` or committed until reviewer acceptance and sanitisation are complete.
 
+The recorded SHA-256 identifies the rerun utility used during execution, but that exact script snapshot was not retained in Git. The current committed utility differs from the executed copy, so the reproduction activity has partial rather than complete script-level reproducibility.
+
 ## Reviewed evidence
 
 - [Local environment record](reviewed/environment-record.md)
-- [Gateway smoke-test record](reviewed/gateway-smoke-test.md)
 - [Garak smoke assessment summary — 2026-09-27](reviewed/garak-smoke-assessment-2026-09-27.md)
 - [Garak smoke assessment review workbook — 2026-09-27](reviewed/garak-smoke-review-2026-09-27.xlsx)
 - [Garak smoke detailed-attempt review workbook — 2026-09-27](reviewed/garak-smoke-detailed-review-2026-09-27.xlsx)

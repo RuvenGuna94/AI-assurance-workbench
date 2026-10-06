@@ -130,6 +130,8 @@ The initial workbook labels are 21 `Confirmed finding`, two `Not reproduced` and
 
 The labelled workbook remains under `evidence/local/` while review is in progress. Its SHA-256 is `46b7f80548140d22c6513a1c24fddcc123dac020bcf594f2f5ec8f3313c1b633`. The exact commit of the running gateway process was not captured, so repository state recorded after execution must not be presented as confirmed execution provenance.
 
+The recorded rerun-utility SHA-256 identifies the script used during execution, but that exact script snapshot was not retained in Git. The current committed utility differs from the executed copy, so the reproduction activity has partial rather than complete script-level reproducibility.
+
 ## Evidence
 
 - [Detailed review workbook](detailed-review-2026-10-04.xlsx)
@@ -143,6 +145,7 @@ The labelled workbook remains under `evidence/local/` while review is in progres
 - Eight selected prompt variants completed three reruns each; the remaining focused-run population was not individually reproduced.
 - The initial reproduction labels remain subject to reviewer acceptance.
 - The exact commit of the running gateway process was not captured for the reproduction activity.
+- The exact rerun utility snapshot was not retained in Git.
 - Three generations per probe are insufficient to establish a statistically reliable failure rate.
 - The focused suite covers only the configured prompt-injection and encoded-instruction probes.
 - Results apply only to the recorded prompt, suite, system definition, model, quantisation, runtime and container image.

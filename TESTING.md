@@ -43,7 +43,7 @@ The repository root should contain files such as `README.md`, `pyproject.toml`, 
 ## Install or synchronize dependencies
 
 ```powershell
-uv sync
+uv sync --locked --dev
 ```
 
 Expected result:
@@ -51,6 +51,18 @@ Expected result:
 - The command exits successfully.
 - The project environment and dependencies are synchronized.
 - No unresolved dependency error is displayed.
+
+## Build the application package
+
+```powershell
+uv build
+```
+
+Expected result:
+
+- The source distribution and wheel build successfully under `dist/`.
+- The wheel contains `support_gateway/api.py` and `support_gateway/system_prompt.txt`.
+- The generated `dist/` directory remains ignored by Git.
 
 ## Check the application code
 
@@ -93,7 +105,7 @@ The suite checks:
 Check that the code is correctly formatted without modifying it:
 
 ```powershell
-uv run ruff format --check "src" "tests"
+uv run ruff format --check "src" "tests" "scripts"
 ```
 
 Expected result:
@@ -105,7 +117,7 @@ Expected result:
 Run the linter:
 
 ```powershell
-uv run ruff check "src" "tests"
+uv run ruff check "src" "tests" "scripts"
 ```
 
 Expected result:
@@ -134,10 +146,7 @@ uv run pytest -q
 
 Expected result:
 
-```text
-.....                                                                    [100%]
-6 passed
-```
+All collected tests pass. The current baseline contains 16 tests.
 
 The test count and execution time may change as the suite evolves. All collected tests should pass.
 
