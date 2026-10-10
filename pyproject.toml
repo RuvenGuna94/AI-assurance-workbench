@@ -1,10 +1,10 @@
 [project]
 name = "aiassuranceworkbench"
 version = "0.1.0"
-description = "Portfolio lab for evaluating a local Ollama-backed support gateway with ASQI Engineer and Garak"
+description = "Local AI assurance workbench using ASQI Engineer, Garak, Ollama and FastAPI"
 readme = "README.md"
 authors = [
-    { name = "Ruven Guna", email = "ruvenguna94@hotmail.com" }
+    { name = "Ruven Guna" }
 ]
 requires-python = ">=3.12"
 dependencies = [

@@ -1,6 +1,6 @@
 ﻿# AI Assurance Workbench
 
-This repository demonstrates the evaluation of a locally hosted, model-backed application using ASQI Engineer and Garak.
+This repository is a reproducible local AI assurance lab demonstrating how open-source evaluation tooling can be used to assess a model-backed application.
 
 The application is a fictional customer-support assistant powered by an open-weight Llama model distributed under the Llama Community License and running locally through Ollama. A FastAPI gateway provides an OpenAI-compatible interface and applies the application's support policy. ASQI Engineer orchestrates containerized Garak security tests against that interface.
 
@@ -14,9 +14,20 @@ The application is a fictional customer-support assistant powered by an open-wei
 - Convert technical results into an ASQI scorecard.
 - Preserve reviewed, reproducible evidence without overstating assurance.
 
+## Open-source assurance toolchain
+
+The project combines several open-source components:
+
+- **ASQI Engineer** validates evaluation configuration, orchestrates containerized tests, preserves workflow metadata and applies scorecards.
+- **Garak** provides adversarial probes and detectors for selected LLM vulnerability classes.
+- **Ollama** runs the selected open-weight model locally.
+- **FastAPI** exposes the evaluated application through an OpenAI-compatible interface.
+
+The Llama 3.2 model is open-weight and distributed under the Llama Community License. It should not be described as open source without that qualification.
+
 ## Data notice
 
-This is a portfolio and learning project. It contains no production systems, production credentials, real customer records, customer personal data, or payment data. Reviewed evidence may include the project author's name for assessment provenance.
+This is a self-contained AI assurance demo and learning project. It contains no production systems, production credentials, real customer records, customer personal data, or payment data. Reviewed evidence may include the project author's name for assessment provenance.
 
 The retailer, policies, users, prompts, API keys, and test scenarios are fictional or synthetic. Raw evaluation outputs must be reviewed and sanitized before they are committed.
 

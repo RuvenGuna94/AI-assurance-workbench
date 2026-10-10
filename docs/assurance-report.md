@@ -4,7 +4,7 @@
 
 - Report date: `2026-10-06`
 - Author and reviewer: Ruven Guna
-- Assessment type: Self-assessed portfolio and learning exercise
+- Assessment type: Self-assessed open-source AI assurance exercise
 - Project: AI Assurance Workbench
 - System under test: `northstar_support_app`
 - Assessment status: `PROVISIONAL`
@@ -341,7 +341,7 @@ These are reporting bands, not industry-standard severity ratings.
 | F-001 remediation | `NOT_REMEDIATED` |
 | Overall assurance | `PROVISIONAL` |
 
-The scorecard is a portfolio decision aid. It is not a certification or production approval.
+The scorecard is a project-specific assurance decision aid. It is not a certification or production approval.
 
 ## Mitigation and retest roadmap
 
