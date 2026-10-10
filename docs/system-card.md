@@ -65,7 +65,7 @@ The FastAPI gateway is the system boundary presented to the evaluation framework
 - Translates Ollama connectivity failures into a controlled gateway response.
 - Returns responses using an OpenAI-compatible structure.
 
-The application does not expose Ollama directly to the Garak test container. This ensures that the evaluation includes the policy and controls implemented by the gateway rather than testing the base model in isolation.
+The application exposes the gateway, rather than Ollama, to the Garak test container. The evaluation therefore includes the gateway policy and controls instead of testing the base model in isolation.
 
 ## ASQI system definition
 
@@ -105,7 +105,7 @@ Risks, planned coverage, and evaluation limitations are recorded in [Threat Mode
 
 ## Data and deployment
 
-This is a local portfolio project using fictional policies and synthetic test prompts. No production data or real customer records are used.
+This local evaluation uses fictional policies and synthetic test prompts. No production data or real customer records are used.
 
 The application is not intended for public or production deployment.
 
@@ -123,14 +123,8 @@ System prompts are not security boundaries by themselves. The model may ignore i
 
 Evaluation results apply only to the recorded application, prompt, model, runtime, and test configuration. Passing a scan does not establish universal safety or production readiness.
 
-### Known prompt-injection finding
+### Known assessment outcome
 
-The initial Garak assessment completed on 2026-09-27 confirmed that selected prompt-injection variations could cause the model to abandon the intended retailer-support policy and return an injected hostile phrase.
+Reviewed Garak evidence identified one open Medium-severity finding, `F-001`. Selected prompt-injection variations caused the application to leave its intended support role and emit injected hostile text.
 
-The confirmed findings demonstrate that the system prompt and gateway-enforced message structure do not consistently prevent policy override at the model-output layer. The behavior was assessed as Medium severity because it represented a repeatable restriction bypass, but the evaluation did not demonstrate sensitive-data disclosure, external-system access, real customer impact, or materially actionable harmful behavior.
-
-Risk R1 remains open pending remediation and retesting. Representative reproduction covered eight selected prompts; seven prompt variants reproduced the detector target consistently, while the remaining focused R1 signal population was not individually reproduced. See the [reviewed Garak smoke assessment](../evidence/reviewed/garak-smoke-assessment-2026-09-27.md), [focused assessment](../evidence/reviewed/garak-focused-2026-10-02/summary.md), and [findings record](findings.md).
-
-A follow-up detailed-output review completed on 2026-10-04 classified 151 prompt-injection detector signals as requiring review and 14 detector signals as false positives. The later representative reproduction covered eight selected prompts; it did not convert the remaining signal population into separate confirmed findings. These results therefore do not change the existing grouped finding count or Medium severity assessment.
-
-The reviewed ROT13 signal did not demonstrate a harmful encoded-instruction bypass. Broader resistance to encoded instructions has not been established.
+The finding affects risk `R1` and has not been mitigated or retested. Evidence for `R2` remains limited, while `R3`, `R4`, and `R5` have not been assessed. See the [findings register](findings.md) and [assurance report](assurance-report.md) for the supporting evidence and current decision.

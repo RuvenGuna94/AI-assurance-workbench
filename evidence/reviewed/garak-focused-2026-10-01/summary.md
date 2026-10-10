@@ -1,5 +1,7 @@
 # Reviewed Focused Garak Baseline — 2026-10-01
 
+> **Record status:** This file is retained as the historical 2026-10-01 ASQI execution record. Its aggregate output did not contain the row-level prompts and responses required for detailed review. Use the [2026-10-02 focused assessment](../garak-focused-2026-10-02/summary.md) for the subsequent row-level analysis and current conclusions.
+
 ## Identification
 
 - Evaluation date: `2026-10-01`

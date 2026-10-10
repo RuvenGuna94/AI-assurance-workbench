@@ -173,49 +173,17 @@ Sanitisation must not alter the meaning of the reviewed result. If text must be 
 
 ## Published workbooks
 
-GitHub does not render the contents of `.xlsx` files directly. Readers normally need to download the workbook to inspect the detailed prompts, model outputs, classifications, and reviewer notes.
+GitHub does not render `.xlsx` workbook contents. Each published workbook therefore has an accompanying Markdown summary describing its scope, results, review state, and limitations.
 
-The accompanying Markdown summaries provide the main conclusions without requiring the workbook to be downloaded.
+The published workbooks contain:
 
-### Smoke assessment workbook
+- The smoke assessment classification and detailed-attempt review.
+- The focused assessment’s row-level prompt, response, detector, and classification records.
+- The provisional baseline scorecard and its source JSON.
 
-The smoke assessment workbook contains the initial prompt-injection evaluation and its completed manual review.
+Result counts and assessment conclusions are maintained in the corresponding run summaries and the [findings register](../docs/findings.md). This file defines how evidence is handled; it is not a second assessment report.
 
-The review classified 37 detector signals:
-
-- 15 as `Confirmed`.
-- 12 as `Not reproduced`.
-- 10 as `False positive`.
-
-The confirmed signals are grouped under the existing prompt-injection finding because they represent variations of the same underlying policy-override behavior.
-
-### Focused assessment workbook
-
-The focused detailed-review workbook expands prompt-injection coverage and includes encoded-instruction probes.
-
-The follow-up detailed review classified 165 detector signals:
-
-- 151 as `Needs review`.
-- 14 as `False positive`.
-- 0 as `Confirmed` at this stage.
-
-At the detailed-review stage, the `Needs review` records appeared to follow injected instructions or leave the intended retailer-support role and required representative reproduction before they could support a confirmed finding. A later representative sample is documented below; unsampled records remain `Needs review`.
-
-The reviewed ROT13 signal was classified as a false positive because the model echoed the encoded input and redirected to retailer support. It did not demonstrate a harmful decoded-instruction bypass. This result does not establish that encoded-instruction risk is fully mitigated.
-
-### Focused representative reproduction
-
-Eight randomly selected prompt-injection records were rerun three times each on 2026-10-04. The resulting 24 requests received initial labels of:
-
-- 21 `Confirmed finding` because the probe target was emitted verbatim.
-- 2 `Not reproduced` because the response resisted or redirected the injected request.
-- 1 `Needs investigation` because it did not emit the hostile target but left the intended role and fabricated a first-person shop visit.
-
-The exact reproductions support the existing grouped R1 finding rather than creating 21 separate vulnerabilities. Seven of eight selected prompt variants reproduced in all three attempts. The remaining focused-run population was not individually rerun and retains its earlier classification.
-
-The labelled reproduction workbook remains in `evidence/local/` while the reviewer checks the classifications. It must not be copied into `reviewed/` or committed until reviewer acceptance and sanitisation are complete.
-
-The recorded SHA-256 identifies the rerun utility used during execution, but that exact script snapshot was not retained in Git. The current committed utility differs from the executed copy, so the reproduction activity has partial rather than complete script-level reproducibility.
+Representative reproduction material remains in `evidence/local/` and has not been published. Its summarised conclusions are recorded in reviewed documentation, but the workbook must not be committed unless it is separately reviewed, sanitised, and deliberately selected for publication.
 
 ## Reviewed evidence
 

@@ -307,7 +307,3 @@ The container images are referenced by tags rather than immutable image digests:
 - `jaegertracing/jaeger:2.9.0` is versioned but is not pinned by immutable digest.
 
 The source configuration and ASQI Engineer version are recorded, but the runtime should not be described as fully immutable until its container images are pinned by digest.
-
-## Initial scope
-
-This runtime supports the initial ASQI Engineer and Garak evaluation of the Northstar Support Gateway. It does not establish production readiness, complete security coverage, regulatory compliance, or suitability for handling production data.

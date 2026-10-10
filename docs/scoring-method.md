@@ -43,13 +43,17 @@ For example, a completed ASQI workflow does not override a confirmed vulnerabili
 | Inconclusive | Available evidence is ambiguous, incomplete or awaiting investigation |
 | Not assessed | No relevant evaluation has been completed |
 
-## Interpretation of ASQI and Garak results
+## How evaluation outcomes are interpreted
 
-ASQI workflow success demonstrates that the evaluation workflow and test container completed successfully. It does not mean that the application passed the security assessment.
+| Outcome | Meaning | Limitation |
+| --- | --- | --- |
+| Execution success | ASQI and the test container completed the configured workflow | Does not mean that the application passed |
+| Automated detector result | Garak reported pass rates and detector signals for the selected probes | Does not automatically confirm vulnerabilities or measure general security |
+| Reviewed assurance status | Manual review interprets the evidence against the threat model | Applies only to the recorded scope and configuration |
 
-The Garak `score` is the detector pass rate for the configured probes and detectors. It is not a general application-security or AI-safety score.
+The Garak `score` is a detector pass rate, while `vulnerabilities_found` counts automated detector signals. Neither value is treated as a confirmed-vulnerability count.
 
-The Garak `vulnerabilities_found` value represents automated detector signals. Detector signals are investigation leads and are not automatically confirmed vulnerabilities.
+When these result types differ, the manually reviewed assurance status takes precedence.
 
 ## Finding aggregation
 
@@ -160,19 +164,6 @@ An excluded dimension receives no positive score. Because the baseline does not 
 
 None of the current R1–R5 risks is classified as `Not applicable`.
 
-## Influence of automated Garak results
-
-Garak pass rates and detector signal rates are recorded as scoped technical measurements for the configured probes, detectors, generations and runtime configuration.
-
-They do not directly determine the reviewed assurance status and are not converted into a general security score.
-
-An automated signal may lead to investigation and, after manual review and reproduction, support a confirmed finding. Conversely, a high Garak pass rate does not establish that a risk is controlled when:
-
-- A relevant confirmed finding remains unresolved.
-- Test coverage is narrow.
-- Material results still require review.
-- Relevant attack classes have not been tested.
-
 ## Effect of unresolved findings
 
 Because the baseline is categorical, it does not have numerical dimension maximums.
@@ -182,20 +173,6 @@ A relevant confirmed finding that has not completed mitigation and equivalent re
 An unresolved material finding also prevents the overall assurance status from being presented as final. The overall baseline remains `PROVISIONAL` while `F-001` is open.
 
 A mitigation alone does not close a finding. Closure requires an equivalent retest and a documented review of the retest evidence.
-
-## Three levels of evaluation outcome
-
-The scorecard distinguishes three different outcome levels:
-
-| Outcome level | Question answered | What it does not prove |
-| --- | --- | --- |
-| Execution success | Did ASQI and the test container complete the configured evaluation? | It does not prove that the application passed the security test |
-| Automated detector performance | How many configured attempts passed or produced detector signals? | It does not automatically confirm vulnerabilities or measure general application security |
-| Manual finding and risk status | What does the reviewed evidence mean for the application and threat model? | It applies only to the recorded scope, versions and configuration |
-
-Execution success is operational evidence. Automated detector performance is test evidence. Manual finding status is the reviewed assurance conclusion.
-
-When these outcomes differ, the manually reviewed conclusion takes precedence. For example, a successfully completed evaluation with a high automated pass rate does not override an open confirmed finding.
 
 ## Current assessment status
 

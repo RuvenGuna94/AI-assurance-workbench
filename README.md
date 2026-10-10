@@ -64,7 +64,7 @@ See [the model record](docs/model-record.md) for hardware, configuration, proven
 
 ## Current assessment outcome
 
-The [AI assurance report](docs/assurance-report.md) provides the complete assessment scope, method, results, findings, scorecard decision, limitations and retest triggers.
+The [AI assurance report](docs/assurance-report.md) provides the assessment scope, method, results, finding, scorecard decision, limitations, and required next actions.
 
 - The current assurance status is **PROVISIONAL**. R1 remains open because `F-001` is a confirmed and reproducible prompt-injection policy override. R2 has limited evidence, R3 through R5 are not assessed, and no mitigation or equivalent retest has been completed.
 - The [initial Garak smoke assessment](evidence/reviewed/garak-smoke-assessment-2026-09-27.md) documents execution status, manual classifications, limitations, and the first grouped R1 prompt-injection finding.
